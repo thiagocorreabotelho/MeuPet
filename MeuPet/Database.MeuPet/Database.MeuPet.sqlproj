@@ -60,4 +60,7 @@
     <Folder Include="02 - Procedures" />
     <Folder Include="03 - Funcoes" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="01 - Modelagem\Modelagem.sql" />
+  </ItemGroup>
 </Project>

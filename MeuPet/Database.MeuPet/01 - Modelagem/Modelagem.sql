@@ -1,0 +1,4 @@
+﻿CREATE DATABASE MeuPet;
+
+USE MeuPet
+GO
