@@ -61,11 +61,16 @@
     <Folder Include="03 - Funcoes" />
     <Folder Include="02 - Procedures\Usuarios" />
     <Folder Include="03 - Funcoes\Usuarios" />
+    <Folder Include="02 - Procedures\Empresas" />
+    <Folder Include="03 - Funcoes\Empresas" />
   </ItemGroup>
   <ItemGroup>
     <None Include="01 - Modelagem\Modelagem.sql" />
     <None Include="02 - Procedures\Usuarios\spValidarTokenUsuario.sql" />
     <None Include="03 - Funcoes\Usuarios\fnRetornarUsuarioId.sql" />
     <None Include="03 - Funcoes\Usuarios\fnVerificarUsuarioExistente.sql" />
+    <None Include="03 - Funcoes\Empresas\fnRetornarEmpresaId.sql" />
+    <None Include="02 - Procedures\Empresas\spConsultarEmpresa.sql" />
+    <None Include="02 - Procedures\Empresas\spEditarEmpresa.sql" />
   </ItemGroup>
 </Project>
