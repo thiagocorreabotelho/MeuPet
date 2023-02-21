@@ -1,4 +1,5 @@
 ﻿
+using MeuPet.Domain.Model.Administrativo;
 using MeuPet.Domain.Model.Configuracao;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -50,35 +51,35 @@ namespace MeuPet.API.Data
 
         #endregion
 
-        //#region Empresa
+        #region Empresa
 
-        //private DbSet<spConsultarEmpresa> _spConsultarEmpresa { get; set; }
+        private DbSet<spConsultarEmpresa> _spConsultarEmpresa { get; set; }
 
-        //public spConsultarEmpresa ConsultarEmpresa(string token, string usuario)
-        //{
+        public spConsultarEmpresa ConsultarEmpresa(string token, string usuario)
+        {
 
-        //    var retorno = _spConsultarEmpresa.FromSqlInterpolated($"Exec [Administrativo].[spConsultarEmpresa]  {token}, {usuario} ").AsEnumerable().FirstOrDefault();
+            var retorno = _spConsultarEmpresa.FromSqlInterpolated($"Exec [Administrativo].[spConsultarEmpresa]  {token}, {usuario} ").AsEnumerable().FirstOrDefault();
 
-        //    return retorno;
+            return retorno;
 
-        //}
+        }
 
-        //public string EditarEmpresa(Empresa empresa)
-        //{
-        //    try
-        //    {
-        //        Database.ExecuteSqlInterpolated($"Exec Administrativo.spEditarEmpresa {empresa.Token}, {empresa.Nome}, {empresa.CNPJ}, {empresa.DataAbertura}, {empresa.Email}, {empresa.CEP}, {empresa.Endereco}, {empresa.Numero}, {empresa.Complemento}, {empresa.Bairro}, {empresa.Cidade}, {empresa.Estado}, {empresa.Whatsapp}, {empresa.LogoHeader}, {empresa.LogoFooter}, {empresa.ResumoRodape}, {empresa.Usuario}");
+        public string EditarEmpresa(Empresa empresa)
+        {
+            try
+            {
+                Database.ExecuteSqlInterpolated($"Exec Administrativo.spEditarEmpresa {empresa.Token}, {empresa.Nome}, {empresa.CNPJ}, {empresa.DataAbertura}, {empresa.Email}, {empresa.CEP}, {empresa.Endereco}, {empresa.Numero}, {empresa.Complemento}, {empresa.Bairro}, {empresa.Cidade}, {empresa.Estado}, {empresa.Whatsapp}, {empresa.Logo}, {empresa.Usuario}");
 
-        //        return "Dados Editados";
-        //    }
-        //    catch (Exception ex)
-        //    {
+                return "Dados Editados";
+            }
+            catch (Exception ex)
+            {
 
-        //        throw;
-        //    }
-        //}
+                throw;
+            }
+        }
 
 
-        //#endregion
+        #endregion
     }
 }
