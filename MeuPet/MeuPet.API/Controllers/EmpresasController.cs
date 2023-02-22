@@ -16,6 +16,14 @@ namespace MeuPet.API.Controllers
             _dataContext = dataContext;
         }
 
+        /// <summary>
+        /// Consultar dados empresa
+        /// </summary>
+        /// <remarks>Endpoint responsável por retornar o objeto da empresa</remarks>
+        /// <param name="entidadeToken">Token unico da entidade empresa.</param>
+        /// <param name="usuario">Usuario que fez a requisição.</param>
+        /// <param name="usuarioToken">Token do usuário que realizou a requisição</param>
+        /// <returns>Retorna os valores requisitado via json</returns>
         // GET api/controller/5																						
         [HttpGet("{entidadeToken}")]
         public IActionResult Get(string entidadeToken, string usuario, string usuarioToken)
@@ -48,6 +56,13 @@ namespace MeuPet.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Método para editar empresa
+        /// </summary>
+        /// <remarks>Esse método é responsável por editar as informações da empresa.</remarks>
+        /// <param name="entidadeToken">Token unico da entidade da empresa</param>
+        /// <param name="empresa">Objeto de empresa com todas as propriedades criadas no model</param>
+        /// <returns>Caso tudo de certo, nos retorna OK</returns>
         [HttpPut("{entidadeToken}")]
         public IActionResult Put(string entidadeToken, [FromBody] Empresa empresa)
         {
