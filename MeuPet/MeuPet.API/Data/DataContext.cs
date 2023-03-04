@@ -82,23 +82,23 @@ namespace MeuPet.API.Data
 
         #endregion
 
-        #region Usuarios
+        //#region Usuarios
 
-        private DbSet<RegistrarUsuario> _registrarUsuario { get; set; }
+        //private DbSet<RegistrarUsuario> _registrarUsuario { get; set; }
 
-        public int CriarUsuario(RegistrarUsuario registrarUsuario)
-        {
-            try
-            {
-                if (registrarUsuario == null) return 00;
+        //public int CriarUsuario(RegistrarUsuario registrarUsuario)
+        //{
+        //    try
+        //    {
+        //        if (registrarUsuario == null) return 00;
 
-                var retorno = ValorId.FromSqlInterpolated($"Exec [Administrativo].[spCriarUsuarios] {registrarUsuario.EmpresaToken}, {registrarUsuario.AspNetUserId}, {registrarUsuario.Nome}, {registrarUsuario.Sobrenome}, ");
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
-        #endregion
+        //        var retorno = ValorId.FromSqlInterpolated($"Exec [Administrativo].[spCriarUsuarios] {registrarUsuario.EmpresaToken}, {registrarUsuario.AspNetUserId}, {registrarUsuario.Nome}, {registrarUsuario.Sobrenome}, ");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return ex.Message;
+        //    }
+        //}
+        //#endregion
     }
 }

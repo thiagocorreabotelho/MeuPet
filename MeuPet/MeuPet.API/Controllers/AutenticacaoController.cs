@@ -24,35 +24,26 @@ namespace MeuPet.API.Controllers
         }
 
         [HttpPost("nova-conta")]
-        public async Task<ActionResult> Registrar(RegistrarUsuario registrarUsuario)
+        public async Task<ActionResult> Registrar(Usuario usuario)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
 
             // processo para criar o usuário do identity
             var usuarioIdentity = new IdentityUser
             {
-                UserName = registrarUsuario.Email,
-                Email = registrarUsuario.Email,
+                UserName = usuario.Email,
+                Email = usuario.Email,
                 EmailConfirmed = true
             };
 
-            var result = await _userManager.CreateAsync(usuarioIdentity, registrarUsuario.Password);
+            var result = await _userManager.CreateAsync(usuarioIdentity, usuario.Senha);
 
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors);
             }
-            else
-            {
-                Usuario modelUsuario = new Usuario();
 
-                modelUsuario.AspNetUserId = usuarioIdentity.Id;
-                modelUsuario.Nome = usuarioIdentity.NormalizedUserName
-
-            }
-
-
-            await _signInManager.SignInAsync(user, false);
+            await _signInManager.SignInAsync(usuarioIdentity, false);
 
             return Ok();
         }

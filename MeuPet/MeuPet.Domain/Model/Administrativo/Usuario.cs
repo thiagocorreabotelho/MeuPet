@@ -62,22 +62,20 @@ namespace MeuPet.Domain.Model.Administrativo
         [Display(Name = "Sobrenome")]
         public string Sobrenome { get; set; }
 
-        public bool Ativo { get; set; }
-    }
-
-    public class RegistrarUsuario
-    {
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [EmailAddress(ErrorMessage = "O campo {0} é inválido")]
+        [Display(Name = "E-mail")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [StringLength(100, ErrorMessage = "O campo {0} precisa ter de {2} e {1 caracteres}")]
-        public string Password { get; set; }
+        [Display(Name = "Senha")]
+        public string Senha { get; set; }
 
-        [Compare("Password", ErrorMessage = "As senhas não conferem.")]
-        public string ConfirmPassword { get; set; }
+        [Compare("Senha", ErrorMessage = "As senhas não conferem.")]
+        public string ConfirmarSenha { get; set; }
 
-       
+        public bool Ativo { get; set; }
     }
+
 }
