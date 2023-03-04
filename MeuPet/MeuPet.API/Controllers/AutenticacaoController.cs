@@ -29,20 +29,33 @@ namespace MeuPet.API.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
 
             // processo para criar o usuário do identity
-            var user = new IdentityUser
+            var usuarioIdentity = new IdentityUser
             {
                 UserName = registrarUsuario.Email,
                 Email = registrarUsuario.Email,
                 EmailConfirmed = true
             };
 
-            var result = await _userManager.CreateAsync(user, registrarUsuario.Password);
+            var result = await _userManager.CreateAsync(usuarioIdentity, registrarUsuario.Password);
 
-            if (!result.Succeeded) return BadRequest(result.Errors);
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+            else
+            {
+                Usuario modelUsuario = new Usuario();
+
+                modelUsuario.AspNetUserId = usuarioIdentity.Id;
+                modelUsuario.Nome = usuarioIdentity.NormalizedUserName
+
+            }
+
 
             await _signInManager.SignInAsync(user, false);
 
             return Ok();
         }
+
     }
 }
