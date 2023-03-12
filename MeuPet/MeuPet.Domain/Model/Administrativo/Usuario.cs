@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MeuPet.Domain.Model.Administrativo
@@ -45,7 +47,6 @@ namespace MeuPet.Domain.Model.Administrativo
         [Display(Name = "Empresa Id")]
         public int EmpresaId { get; set; }
 
-        [Required(ErrorMessage = "* O campo {0} é obrigatório")]
         [Display(Name = "AspNetUserId")]
         public string AspNetUserId { get; set; }
 
@@ -74,8 +75,14 @@ namespace MeuPet.Domain.Model.Administrativo
 
         [Compare("Senha", ErrorMessage = "As senhas não conferem.")]
         public string ConfirmarSenha { get; set; }
-
         public bool Ativo { get; set; }
+
+        #region Propriedades que vão ser ignoradas pela procedure
+        
+        [NotMapped]
+        public string TokenEntidade { get; set; }
+
+        #endregion
     }
 
 }

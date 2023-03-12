@@ -1,4 +1,5 @@
-﻿using MeuPet.Domain.Model.Administrativo;
+﻿using MeuPet.API.Data;
+using MeuPet.Domain.Model.Administrativo;
 using MeuPet.Domain.Model.Configuracao;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -14,13 +15,15 @@ namespace MeuPet.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
+        private DataContext _dataContext;
 
         public AutenticacaoController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager,
-          IOptions<AppSettings> appSettings)
+          IOptions<AppSettings> appSettings, DataContext dataContext)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
+            _dataContext = dataContext;
         }
 
         [HttpPost("nova-conta")]
@@ -37,15 +40,22 @@ namespace MeuPet.API.Controllers
             };
 
             var result = await _userManager.CreateAsync(usuarioIdentity, usuario.Senha);
+            usuario.AspNetUserId = usuarioIdentity.Id;
 
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors);
             }
+            else
+            {
+                await _signInManager.SignInAsync(usuarioIdentity, false);
 
-            await _signInManager.SignInAsync(usuarioIdentity, false);
+                var retorno = await _dataContext.CriarUsuario(usuario);
 
-            return Ok();
+                return Ok();
+
+            }
+
         }
 
     }

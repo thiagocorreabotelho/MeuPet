@@ -72,5 +72,7 @@
     <None Include="03 - Funcoes\Empresas\fnRetornarEmpresaId.sql" />
     <None Include="02 - Procedures\Empresas\spConsultarEmpresa.sql" />
     <None Include="02 - Procedures\Empresas\spEditarEmpresa.sql" />
+    <None Include="02 - Procedures\Usuarios\spCriarClaimsUsuario.sql" />
+    <None Include="02 - Procedures\Usuarios\spCriarUsuarios_1.sql" />
   </ItemGroup>
 </Project>
