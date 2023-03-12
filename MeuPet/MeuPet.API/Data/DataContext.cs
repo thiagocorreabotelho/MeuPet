@@ -81,5 +81,21 @@ namespace MeuPet.API.Data
 
 
         #endregion
+
+        #region Usuarios
+
+        private DbSet<spConsultarUsuario> _spConsultarUsuario { get; set; }
+
+        public async Task<spConsultarUsuario> CriarUsuario(Usuario usuario)
+        {
+                var retorno = ValorId.FromSqlInterpolated($"Exec [Administrativo].[spCriarUsuarios] {usuario.TokenEntidade}, {usuario.AspNetUserId}, {usuario.Nome}, {usuario.Sobrenome}, {usuario.UsuarioEntidade}").AsEnumerable().FirstOrDefault();
+
+                usuario.UsuarioId = (int)retorno.Id;
+
+                return usuario;
+
+        }
+
+        #endregion
     }
 }
